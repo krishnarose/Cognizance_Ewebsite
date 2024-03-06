@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\kris;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,7 +19,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+
+
+
+
 Auth::routes();
+
+
 
 Route::middleware(['auth', 'user-type:user'])->group(function () {
     Route::get('/user-dashboard', [HomeController::class, 'user'])->name('user');
@@ -31,4 +40,5 @@ Route::middleware(['auth', 'user-type:admin'])->group(function () {
 
 });
 
- Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+
