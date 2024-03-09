@@ -11,3 +11,6 @@
 
 <!-- Template Javascript -->
 <script src="{{asset('client/js/main.js')}}"></script>
+
+<script src="{{asset('client/js/tiny-slider.js')}}"></script>
+<script src="{{asset('client/js/custom.js')}}"></script>

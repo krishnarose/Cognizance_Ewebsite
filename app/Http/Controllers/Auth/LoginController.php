@@ -47,10 +47,10 @@ class LoginController extends Controller
         if(auth()->attempt(['email' =>$request-> email, 'password' =>$request-> password]))
         {
             if(auth()->user()->type == 'admin'){
-                return redirect('admin-dashboard');
+                return redirect('/admin/dashboard');
             }
             else{
-                return redirect('user-dashboard');
+                return redirect('user/dashboard');
             }
         }
     }

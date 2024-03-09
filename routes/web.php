@@ -27,15 +27,19 @@ Route::get('/', function () {
 Auth::routes();
 
 
+Route::prefix('user')->middleware(['auth', 'user-type:user'])->group(function () {
+    Route::get('/dashboard', [HomeController::class, 'user'])->name('user');
+    Route::get('/checkout', [HomeController::class, 'checkout'])->name('checkout');
+    Route::get('/cart', [HomeController::class, 'cart'])->name('cart');
 
-Route::middleware(['auth', 'user-type:user'])->group(function () {
-    Route::get('/user-dashboard', [HomeController::class, 'user'])->name('user');
+
 
 
 });
 
-Route::middleware(['auth', 'user-type:admin'])->group(function () {
-    Route::get('/admin-dashboard', [HomeController::class, 'admin'])->name('admin');
+Route::prefix('admin')->middleware(['auth', 'user-type:admin'])->group(function () {
+
+    Route::get('/dashboard',[App\Http\Controllers\Admin\DahboardController::class, 'index']);
 
 
 });
