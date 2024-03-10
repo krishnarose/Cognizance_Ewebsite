@@ -31,7 +31,7 @@
         <div id="collapseFeatured" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Custom Components:</h6>
-                <a class="collapse-item" href="{{ '/admin/course/create' }}">Courses</a>
+                <a class="collapse-item" href="{{ url('/admin/course/create') }}">Courses</a>
                 <a class="collapse-item" href="{{ url('/admin/featured/categories/') }}">Categories</a>
             </div>
         </div>
@@ -62,17 +62,16 @@
     </li>
 
     <!-- Nav Item - Utilities Collapse Menu -->
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-            aria-expanded="true" aria-controls="collapseUtilities">
-            <i class="fas fa-fw fa-wrench"></i>
-            <span>Courses</span>
+    <li class="nav-item {{ Request::is('admin/featured/courses') || Request::is('admin/featured/categories') ? 'active' : '' }}">
+        <a class="nav-link {{ Request::is('admin/featured/courses') || Request::is('admin/featured/categories') ? '' : 'collapsed' }}" href="#" data-toggle="collapse" data-target="#collapseFeatured"
+            aria-expanded="{{ Request::is('admin/featured/courses') || Request::is('admin/featured/categories') ? true : false }}" aria-controls="collapseFeatured">
+            <i class="fas fa-fw fa-cog"></i>
+            <span>Featured</span>
         </a>
-        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+        <div id="collapseFeatured" class="collapse {{ Request::is('admin/featured/courses') || Request::is('admin/featured/categories') ? 'show' : '' }}" aria-labelledby="headingFeatured" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Courses Utilities:</h6>
-                <a class="collapse-item" href="{{url('/admin/course/create')}}">Add Courses</a>
-                <a class="collapse-item" href="{{url('/admin/courses')}}">View Courses</a>
+                <a class="collapse-item {{ Request::is('admin/featured/courses') ? 'active' : '' }}" href="{{ url('/admin/featured/courses') }}">Courses</a>
+                <a class="collapse-item {{ Request::is('admin/featured/categories') ? 'active' : '' }}" href="{{ url('/admin/featured/categories') }}">Categories</a>
             </div>
         </div>
     </li>

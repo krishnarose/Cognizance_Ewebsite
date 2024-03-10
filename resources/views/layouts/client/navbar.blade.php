@@ -12,8 +12,8 @@
                 <a href="index.html" class="nav-item nav-link active">Home</a>
                 <a href="about.html" class="nav-item nav-link">Shop</a>
 
-
                 @if (Auth::user())
+                <a class="nav-item nav-link" href="{{route('cart')}}"><img src="{{asset('client/img/cart.svg')}}"></a>
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">{{ Auth::user()->name }}</a>
                     <div class="dropdown-menu m-0">
@@ -24,6 +24,8 @@
                          <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                             @csrf
                         </form>
+
+
 
                     </div>
                 </div>
