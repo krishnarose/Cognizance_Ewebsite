@@ -7,6 +7,8 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
+
 
 class RegisterController extends Controller
 {
@@ -28,7 +30,17 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/user/dashboard';
+    // protected $redirectTo = '/user/dashboard';
+
+    public function registered(){
+        $isEmailVerified = Auth::user()->email_verified_at;
+        if(is_null($isEmailVerified)){
+            return redirect()->route('verification.notice')->with('message', 'An email is already to to your email address. Please check your email account.');
+        }
+        else{
+            return redirect()->route('/user/dashboard')->with('message', 'Login successful!');
+        }
+    }
 
     /**
      * Create a new controller instance.

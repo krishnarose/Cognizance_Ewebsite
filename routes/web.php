@@ -2,6 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Auth;
+
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -19,8 +24,11 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+Route::get('/email/verify', [App\Http\Controllers\Client\EmailVerificationController::class, 'notice'])->middleware('auth')->name('verification.notice');
+Route::get('/email/verify/{id}/{hash}', [App\Http\Controllers\Client\EmailVerificationController::class, 'verify'])->middleware(['auth', 'signed'])->name('verification.verify');
+Route::post('/email/verification-notification', [App\Http\Controllers\Client\EmailVerificationController::class, 'resend'])->middleware(['auth', 'throttle:6,1'])->name('verification.resend');
 
-Route::prefix('user')->middleware(['auth', 'user-type:user'])->group(function () {
+Route::prefix('user')->middleware(['auth', 'email-verify', 'user-type:user'])->group(function () {
     Route::get('/dashboard', [HomeController::class, 'user'])->name('user');
     Route::get('/checkout', [HomeController::class, 'checkout'])->name('checkout');
     Route::get('/cart', [HomeController::class, 'cart'])->name('cart');
