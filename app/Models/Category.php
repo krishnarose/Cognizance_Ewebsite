@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\softDeletes;
 
 
+use App\Models\FeaturedCategory;
+
+
 class Category extends Model
 {
     use HasFactory;
@@ -23,4 +26,8 @@ class Category extends Model
         'meta_title',
         'meta_description',
     ];
+    public function featured_categories(){
+        return $this->hasMany(FeaturedCategory::class, 'category_id','id');
+
+    }
 }

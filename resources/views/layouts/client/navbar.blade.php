@@ -10,7 +10,7 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto py-0 pe-4">
                 <a href="index.html" class="nav-item nav-link active">Home</a>
-                <a href="about.html" class="nav-item nav-link">Shop</a>
+                <a href="{{route('shop')}}" class="nav-item nav-link">Shop</a>
 
                 @if (Auth::user())
                 <a class="nav-item nav-link" href="{{route('cart')}}"><img src="{{asset('client/img/cart.svg')}}"></a>

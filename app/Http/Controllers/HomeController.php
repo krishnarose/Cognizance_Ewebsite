@@ -42,6 +42,10 @@ class HomeController extends Controller
     {
         return view('layouts.cart');
     }
+    public function shop()
+    {
+        return view('shop');
+    }
 
 
 }
