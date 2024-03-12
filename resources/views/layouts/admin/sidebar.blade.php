@@ -60,6 +60,20 @@
         </div>
     </li>
 
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseProduct"
+            aria-expanded="true" aria-controls="collapseProduct">
+            <i class="fas fa-fw fa-cog"></i>
+            <span>Product</span>
+        </a>
+        <div id="collapseProduct" class="collapse" aria-labelledby="headingProduct" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" href="{{route('admin.product.create')}}">Add Product</a>
+                <a class="collapse-item" href="{{route('admin.products')}}">View Products</a>
+            </div>
+        </div>
+    </li>
+
     <!-- Nav Item - Utilities Collapse Menu -->
 
     <!-- Divider -->
