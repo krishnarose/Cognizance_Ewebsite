@@ -95,10 +95,12 @@
                         <div class="col-md-12">
                             <h2 class="h3 mb-3 text-black">Shipping Address</h2>
                             <div class="p-3 p-lg-5 border bg-white">
+                                @if($address)
                                 <label class="text-black"><strong>{{$address->name}}</strong></label><br>
                                 <label class="text-black">{{$address->street}}</label><br>
                                 <label class="text-black">{{$address->city}}, {{$address->state}}, {{$address->country}} - {{$address->pincode}}</label><br>
                                 <label class="text-black"><strong>Contact: </strong>{{$address->phone}}</label><br>
+                                @endif
                             </div>
                         </div>
                     </div>
