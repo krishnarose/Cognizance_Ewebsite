@@ -26,7 +26,7 @@
                                 <h5 class="card-title">{{ $fcat->category->title }}</h5>
                                 {{-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of
                                     the card's content.</p> --}}
-                                <a href="{{url('/category/'.$fcat->category->slug)}}" class="btn btn-primary">View</a>
+                                <a href="{{url('user/category/'.$fcat->category->slug)}}" class="btn btn-primary">View</a>
                             </div>
                         </div>
                     </div>

@@ -9,11 +9,11 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto py-0 pe-4">
-                <a href="index.html" class="nav-item nav-link active">Home</a>
+                <a href="{{url('/')}}" class="nav-item nav-link active">Home</a>
                 <a href="{{route('shop')}}" class="nav-item nav-link">Shop</a>
+                <a class="nav-item nav-link" href="{{route('cart')}}"><img src="{{asset('client/img/cart.svg')}}"></a>
 
                 @if (Auth::user())
-                <a class="nav-item nav-link" href="{{route('cart')}}"><img src="{{asset('client/img/cart.svg')}}"></a>
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">{{ Auth::user()->name }}</a>
                     <div class="dropdown-menu m-0">

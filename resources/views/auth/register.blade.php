@@ -1,6 +1,11 @@
-@extends('layouts.app')
+@extends('layouts.client.master')
+
+@section('title', 'Registration - Ecommerce')
 
 @section('content')
+<div class="container-xxl py-5 bg-dark hero-header mb-5">
+</div>
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">

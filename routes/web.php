@@ -23,9 +23,17 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/category/{slug}', [App\Http\Controllers\Client\MenuController::class, 'index']);
+// Route::get('/category/{slug}', [App\Http\Controllers\Client\MenuController::class, 'index']);
+// Route::get('/cart/{id}/add', [App\Http\Controllers\Client\ShopController::class, 'add_to_cart'])->name('shop.cart.add');
+// Route::post('/cart/{user_id}/update', [App\Http\Controllers\Client\ShopController::class,'update_cart'])->name('shop.cart.update');
+// Route::post('/address/create', [App\Http\Controllers\Client\AddressController::class, 'store'])->name('address.create');
+
+// Route::get('/razorpay/{price}', [App\Http\Controllers\Payment\RazorpayController::class, 'index'])->name('razorpay.payment');
+// Route::post('/order/store', [App\Http\Controllers\Client\OrderController::class, 'store'])->name('order.store');
+
 
 Auth::routes();
+
 Route::get('/email/verify', [App\Http\Controllers\Client\EmailVerificationController::class, 'notice'])->middleware('auth')->name('verification.notice');
 Route::get('/email/verify/{id}/{hash}', [App\Http\Controllers\Client\EmailVerificationController::class, 'verify'])->middleware(['auth', 'signed'])->name('verification.verify');
 Route::post('/email/verification-notification', [App\Http\Controllers\Client\EmailVerificationController::class, 'resend'])->middleware(['auth', 'throttle:6,1'])->name('verification.resend');
@@ -33,10 +41,24 @@ Route::post('/email/verification-notification', [App\Http\Controllers\Client\Ema
 Route::get('/user/shop', [App\Http\Controllers\Client\ShopController::class, 'shop'])->name('shop');
 
 
+Route::get('/cart', [App\Http\Controllers\Client\CartController::class, 'index'])->name('cart');
+
+
 Route::prefix('user')->middleware(['auth', 'email-verify', 'user-type:user'])->group(function () {
+
+    Route::get('/category/{slug}', [App\Http\Controllers\Client\MenuController::class, 'index']);
+    Route::get('/cart/{id}/add', [App\Http\Controllers\Client\ShopController::class, 'add_to_cart'])->name('shop.cart.add');
+    Route::post('/cart/{user_id}/update', [App\Http\Controllers\Client\ShopController::class,'update_cart'])->name('shop.cart.update');
+    Route::post('/address/create', [App\Http\Controllers\Client\AddressController::class, 'store'])->name('address.create');
+    
+    Route::get('/checkout', [App\Http\Controllers\Client\CartController::class, 'view_checkout'])->name('checkout');
+
+    Route::post('/order/store', [App\Http\Controllers\Client\OrderController::class, 'store'])->name('order.store');
+    Route::get('/razorpay/{price}', [App\Http\Controllers\Payment\RazorpayController::class, 'index'])->name('razorpay.payment');
+
     Route::get('/dashboard', [HomeController::class, 'user'])->name('user');
-    Route::get('/checkout', [HomeController::class, 'checkout'])->name('checkout');
-    Route::get('/cart', [HomeController::class, 'cart'])->name('cart');
+
+
 
 
 });
